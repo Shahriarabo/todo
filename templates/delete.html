@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete
+{% endblock title %}
+
+
+
+
+{% block body %}
+<div class="container-fluid px-0">
+  <div class="container">
+    <h3>Are you sure you want to delete task '{{task.title}}'?</h3>
+    <h5>{{task.description}}</h5>
+
+
+    <form action="/edit/{{id}}" method="GET">
+
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger ml-4 mt-4">Delete</button>
+      <a href="/" class="btn btn-primary ml-2 mt-4">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock body %}

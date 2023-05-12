@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+
+
+{% block body %}
+<div class="container-fluid px=0">
+
+  <div class="jumbotron bg-secondary">
+    <div class="container">
+      <h1 class="display-4">Manage Your Day! </h1>
+      <p class="lead">Fill the form below to add your task.</p>
+      <hr class="my-4">
+
+      <form action="/" method="POST">
+        {% csrf_token %}
+        <form>
+          <div class="form-group bg- ">
+            <label for="title">Enter title</label>
+            <input type="title" class="form-control" id="title" placeholder="title" name="title">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description your task</label>
+            <textarea class="form-control" id="description" placeholder="description your task" name="description" rows="3"></textarea>
+
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="is_done" id="is_done">
+            <label class="form-check-label" for="is_done">Check this if the task completed</label>
+          </div>
+
+          <button class="btn btn-primary  mt-3" type="submit" role="button">Add Me</button>
+        </form>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<div class="container">
+  <table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in task  %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.description}}</td>
+        <td><a type="button"  href="/edit/{{i.id}} "class="btn btn-primary">Edit</a>
+        <td><a type="button"  href="/delete/{{i.id}} "class="btn btn-danger">Delete</a>
+      </tr>
+      {% endfor %}
+      
+      
+    </tbody>
+  </table>
+</div>
+{% endblock body %}
